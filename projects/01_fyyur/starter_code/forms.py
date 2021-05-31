@@ -114,7 +114,7 @@ class VenueForm(FlaskForm):
         'phone', validators=[DataRequired()]
     )
     website_link = StringField(
-        'website', validators=[DataRequired(), URL(), Length(max=120)]
+        'website_link', validators=[DataRequired(), URL(), Length(max=120)]
     )
     facebook_link = StringField(
         'facebook_link', validators=[DataRequired(), URL()]
@@ -128,6 +128,8 @@ class VenueForm(FlaskForm):
     image_link = StringField(
         'image_link', validators=[DataRequired(), URL(), Length(max=500)]
     )
+
+    
 class ArtistForm(FlaskForm):
     def validate_phone(form, field):
         if not re.search(r"^[0-9]{3}-[0-9]{3}-[0-9]{4}$", field.data):
@@ -165,7 +167,7 @@ class ArtistForm(FlaskForm):
         'seeking_description', validators=[Length(max=500)]
     )
     website_link= StringField(
-        'website', validators=[DataRequired(), URL(), Length(max=120)]
+        'website_link', validators=[DataRequired(), URL(), Length(max=120)]
     )
     image_link = StringField(
         'image_link', validators=[DataRequired(), URL(), Length(max=500)]
