@@ -409,13 +409,12 @@ def delete_artist():
 
 #  Update
 #  ----------------------------------------------------------------
-@app.route('/artists/edit', methods=['GET'])
-def edit_artist():
+@app.route('/artists/<int:artist_id>/edit', methods=['GET'])
+def edit_artist(artist_id):
     form = ArtistForm()
-    artist_id = request.args.get('artist_id')
     artist = Artist.query.get(artist_id)
     artist_info = {
-        "id": artist.id,
+        "id": artist_id,
         "name": artist.name,
         "genres": artist.genres.split(','),
         "city": artist.city,
@@ -455,9 +454,9 @@ def edit_artist_submission(artist_id):
     return redirect(url_for('show_artist', artist_id=artist_id))
 
 
-@app.route('/venues/edit', methods=['GET'])
-def edit_venue():
-    venue_id = request.args.get('venue_id')
+@app.route('/venues/<int:venue_id>/edit', methods=['GET'])
+def edit_venue(venue_id):
+    
     form = VenueForm()
     venue = Venue.query.get(venue_id)
     venue_info = {
@@ -484,25 +483,24 @@ def edit_venue_submission(venue_id):
     # TODO: take values from the form submitted, and update existing
     # venue record with ID <venue_id> using the new attributes
     venue = Venue.query.get(venue_id)
-    print(venue)
+    
     venue.name = request.form['name']
-    print(venue.name)
+  
     venue.city = request.form['city']
-    print(venue.city)
+
     venue.state = request.form['state']
-    print(venue.state)
+    
     venue.address = request.form['address']
-    print(venue.address)
+ 
     venue.phone = request.form['phone']
-    print(venue.phone)
+ 
     venue.facebook_link = request.form['facebook_link']
-    print(venue.facebook_link)
+  
     venue.genres = request.form['genres']
-    print(venue.generes)
     venue.image_link = request.form['image_link']
-    print(venue.image_link)
+   
     venue.website_link = request.form['website_link']
-    print(venue.website_link)
+    
     
     try:
        
